@@ -5,11 +5,11 @@ const Note = require("../models/Note");
 // ADD NOTE
 router.post("/", async (req, res) => {
   try {
-    console.log("REQ BODY:", req.body); // 🔍 DEBUG
+    console.log("REQ BODY:", req.body); 
 
     const note = new Note({
       title: req.body.title,
-      content: req.body.content, // 👈 MUST EXIST
+      description: req.body.description,
     });
 
     const savedNote = await note.save();
