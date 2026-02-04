@@ -6,7 +6,10 @@ const dotenv = require("dotenv");
 dotenv.config(); 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "https://note-app.netlify.app",
+  methods: ["GET", "POST", "DELETE"]
+}));
 app.use(express.json());
 
 mongoose
