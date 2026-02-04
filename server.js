@@ -7,7 +7,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: "https://note-app.netlify.app",
+  origin: "https://note-app33.netlify.app/",
   methods: ["GET", "POST", "DELETE"]
 }));
 app.use(express.json());
