@@ -20,20 +20,26 @@ router.post("/", async (req, res) => {
   }
 });
 
-// GET NOTES
+// get notes
 router.get("/", async (req, res) => {
   try {
     const notes = await Note.find();
-    res.json(notes);
+    res.status(200).json(notes);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
 
-// DELETE NOTE
+// delete notes
 router.delete("/:id", async (req, res) => {
   try {
-    await Note.findByIdAndDelete(req.params.id);
+    const deleted = await Note.findByIdAndDelete(req.params.id);
+
+    if (!deleted) {
+      return res.status(404).json({ message: "Note not found" });
+    }
+
     res.json({ message: "Deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });
